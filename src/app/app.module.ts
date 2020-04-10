@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LibraryComponent } from './library/library.component';
+import { PlayPuzzleComponent } from './play-puzzle/play-puzzle.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LibraryComponent,
+    PlayPuzzleComponent
   ],
   imports: [
     BrowserModule,

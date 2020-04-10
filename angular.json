@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "madlib-front"
+    }
+  },
+  "defaultProject": "madlib-front",
+  "cli": {
+    "analytics": "64460c5f-b785-44bb-82f7-c112a83f46f9"
+  }
 }
