@@ -1,7 +1,8 @@
 import { LibraryPage } from './library.po';
-import {browser, by, logging} from 'protractor';
+import {browser, logging} from 'protractor';
 import {PlayablePuzzlePage} from './playable-puzzle.po';
-import {ExpectedConditions as until} from 'protractor';
+import {PuzzleCard} from './puzzle-card.po';
+
 
 describe('workspace-project App', () => {
   let page: LibraryPage;
@@ -17,10 +18,10 @@ describe('workspace-project App', () => {
 
   it('should take user to detail when user selects puzzle', async () => {
     await page.navigateTo();
-    const puzzleCard = page.GetPuzzleAtIndex(0);
-    const puzzleTitle = puzzleCard.getText();
+    const puzzleCard = new PuzzleCard(page.GetPuzzleAtIndex(0));
+    const puzzleTitle = puzzleCard.GetTitle();
 
-    puzzleCard.click();
+    puzzleCard.Play()
 
     const navigatedTo = new PlayablePuzzlePage();
     expect(navigatedTo.getTitleText()).toEqual(puzzleTitle);

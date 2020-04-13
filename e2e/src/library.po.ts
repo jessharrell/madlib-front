@@ -12,4 +12,8 @@ export class LibraryPage {
   GetPuzzleAtIndex(index: number): ElementFinder {
     return element.all(by.css('.puzzle-card')).get(index);
   }
+
+  ClickPlayOnPuzzleCard(puzzleCard: ElementFinder) {
+    puzzleCard.element(by.css('.play-button')).click();
+  }
 }
