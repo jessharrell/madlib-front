@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IPuzzleService, PuzzleService} from '../puzzle.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-library',
@@ -9,11 +10,18 @@ import {IPuzzleService, PuzzleService} from '../puzzle.service';
 export class LibraryComponent implements OnInit {
   AllPuzzleCards: string[];
 
-  constructor(private puzzleService: PuzzleService) { }
+  constructor(private puzzleService: PuzzleService,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.puzzleService.GetAll().subscribe(puzzles =>
       this.AllPuzzleCards = puzzles.map(p => p.Title)
     );
+  }
+
+  takeUserToPlay(puzzle: string) {
+    const params = {puzzleToPlay: puzzle};
+    this.router.navigate(['/play'], {queryParams: params});
   }
 }

@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {Title} from '@angular/platform-browser';
 
 export class DisplayPuzzle {
   Title: string;
 }
 
 class DataPuzzle {
-  Title: string;
+  title: string;
 }
 
 export interface IPuzzleService {
@@ -28,7 +27,7 @@ export class PuzzleService implements IPuzzleService {
       map(data =>
         data.map(dataPuzzle => {
           const display = new DisplayPuzzle();
-          display.Title = dataPuzzle.Title;
+          display.Title = dataPuzzle.title;
           return display;
         })
       )

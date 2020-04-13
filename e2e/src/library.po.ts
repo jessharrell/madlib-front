@@ -1,11 +1,15 @@
-import { browser, by, element } from 'protractor';
+import {browser, by, element, ElementFinder} from 'protractor';
 
-export class AppPage {
+export class LibraryPage {
   navigateTo(): Promise<unknown> {
     return browser.get(browser.baseUrl) as Promise<unknown>;
   }
 
   getTitleText(): Promise<string> {
     return element(by.css('.content .title')).getText() as Promise<string>;
+  }
+
+  GetPuzzleAtIndex(index: number): ElementFinder {
+    return element.all(by.css('.puzzle-card')).get(index);
   }
 }
