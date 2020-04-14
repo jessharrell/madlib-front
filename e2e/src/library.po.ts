@@ -13,7 +13,11 @@ export class LibraryPage {
     return element.all(by.css('.puzzle-card')).get(index);
   }
 
-  ClickPlayOnPuzzleCard(puzzleCard: ElementFinder) {
-    puzzleCard.element(by.css('.play-button')).click();
+  FindPuzzleCardWithTitle(puzzleTitle: any) {
+    return element(by.cssContainingText('.puzzle-card', puzzleTitle));
+  }
+
+  GetAddPuzzleButton() {
+    return element(by.css('.add-button'));
   }
 }

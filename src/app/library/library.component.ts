@@ -24,4 +24,8 @@ export class LibraryComponent implements OnInit {
     const params = {puzzleToPlay: puzzle};
     this.router.navigate(['/play'], {queryParams: params});
   }
+
+  takeUserToCreate() {
+    this.router.navigate(['/create']);
+  }
 }

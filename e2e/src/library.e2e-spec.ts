@@ -2,6 +2,7 @@ import { LibraryPage } from './library.po';
 import {browser, logging} from 'protractor';
 import {PlayablePuzzlePage} from './playable-puzzle.po';
 import {PuzzleCard} from './puzzle-card.po';
+import {CreatablePuzzlePage} from './creatable-puzzle.po';
 
 
 describe('workspace-project App', () => {
@@ -25,6 +26,16 @@ describe('workspace-project App', () => {
 
     const navigatedTo = new PlayablePuzzlePage();
     expect(navigatedTo.getTitleText()).toEqual(puzzleTitle);
+  });
+
+  it('should take user to create page when user selects add', () => {
+    page.navigateTo();
+    const addButton = page.GetAddPuzzleButton();
+
+    addButton.click();
+
+    const navigatedTo = new CreatablePuzzlePage();
+    expect(navigatedTo.getTitleText()).toEqual('Create a Puzzle');
   });
 
 

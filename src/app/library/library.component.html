@@ -1,5 +1,6 @@
 <div class="content">
   <h1 class="title">Welcome to the MadLibs Library</h1>
+  <button class="add-button" (click)="takeUserToCreate()">Add New Puzzle</button>
   <div *ngFor="let puzzle of AllPuzzleCards">
     <div class="puzzle-card" >
       <span class="card-title">{{puzzle}}</span>

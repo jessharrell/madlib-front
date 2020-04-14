@@ -7,7 +7,7 @@ export class DisplayPuzzle {
   Title: string;
 }
 
-class DataPuzzle {
+class IncomingPuzzle {
   title: string;
 }
 
@@ -23,7 +23,7 @@ export class PuzzleService implements IPuzzleService {
   constructor(private http: HttpClient) { }
 
   GetAll(): Observable<DisplayPuzzle[]> {
-    return this.http.get<DataPuzzle[]>('https://localhost:5001/puzzle/all').pipe(
+    return this.http.get<IncomingPuzzle[]>('https://localhost:5001/puzzle/all').pipe(
       map(data =>
         data.map(dataPuzzle => {
           const display = new DisplayPuzzle();
@@ -32,5 +32,15 @@ export class PuzzleService implements IPuzzleService {
         })
       )
     );
+  }
+
+  CreatePuzzle(puzzle: DisplayPuzzle): Observable<boolean> {
+    const dataPuzzle = new IncomingPuzzle();
+    dataPuzzle.title = puzzle.Title;
+
+    return this.http.post('https://localhost:5001/puzzle/create', dataPuzzle, {observe: 'response'})
+      .pipe(map(resp => {
+        return resp.status === 202;
+      }));
   }
 }
