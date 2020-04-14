@@ -15,4 +15,8 @@ export class CreatablePuzzlePage {
   SubmitPuzzle() {
     element(by.css('.submit-button')).click();
   }
+
+  IsErrorPresent(): Promise<boolean> {
+    return element(by.css('.error')).isPresent() as Promise<boolean>;
+  }
 }

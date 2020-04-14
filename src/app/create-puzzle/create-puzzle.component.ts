@@ -9,7 +9,8 @@ import {Router} from '@angular/router';
 })
 export class CreatePuzzleComponent implements OnInit {
 
-  public puzzleTitle: string = '';
+  public puzzleTitle = '';
+  public isValid = true;
 
   constructor(private puzzleService: PuzzleService,
               private router: Router) { }
@@ -18,10 +19,14 @@ export class CreatePuzzleComponent implements OnInit {
   }
 
   createPuzzle() {
-    const puzzle = new DisplayPuzzle();
-    puzzle.Title = this.puzzleTitle;
-    this.puzzleService.CreatePuzzle(puzzle).subscribe(success =>
-      this.router.navigate(['/library'])
-    );
+    if (this.puzzleTitle === ''){
+      this.isValid = false;
+    } else {
+      const puzzle = new DisplayPuzzle();
+      puzzle.Title = this.puzzleTitle;
+      this.puzzleService.CreatePuzzle(puzzle).subscribe(success =>
+        this.router.navigate(['/library'])
+      );
+    }
   }
 }

@@ -1,6 +1,7 @@
 import {CreatablePuzzlePage} from './creatable-puzzle.po';
 import {LibraryPage} from './library.po';
 import { v4 as uuid } from 'uuid';
+import {browser, logging} from 'protractor';
 
 describe('Creating a puzzle', () => {
   let libraryPage: LibraryPage;
@@ -16,6 +17,14 @@ describe('Creating a puzzle', () => {
     createPage = new CreatablePuzzlePage();
   });
 
+  afterEach(async () => {
+    // Assert that there are no errors emitted from the browser
+    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+    expect(logs).not.toContain(jasmine.objectContaining({
+      level: logging.Level.SEVERE,
+    } as logging.Entry));
+  });
+
   it('should return to library with new puzzle in list', () => {
     const puzzleId = uuid().toString();
     createPage.EnterPuzzleTitle(puzzleId);
@@ -23,4 +32,10 @@ describe('Creating a puzzle', () => {
     const newPuzzleCard = libraryPage.FindPuzzleCardWithTitle(puzzleId);
     expect(newPuzzleCard.isDisplayed()).toBe(true);
   });
-})
+
+  it('should error when no title entered and user submits', () => {
+    createPage.SubmitPuzzle();
+
+    expect(createPage.IsErrorPresent()).toBe(true);
+  });
+});
