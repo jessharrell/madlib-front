@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IPuzzleService, PuzzleService} from '../puzzle.service';
+import {DisplayPuzzle, IPuzzleService, PuzzleService} from '../puzzle.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./library.component.less']
 })
 export class LibraryComponent implements OnInit {
-  AllPuzzleCards: string[];
+  AllPuzzleCards: DisplayPuzzle[];
 
   constructor(private puzzleService: PuzzleService,
               private router: Router) {
@@ -16,12 +16,12 @@ export class LibraryComponent implements OnInit {
 
   ngOnInit(): void {
     this.puzzleService.GetAll().subscribe(puzzles =>
-      this.AllPuzzleCards = puzzles.map(p => p.Title)
+      this.AllPuzzleCards = puzzles
     );
   }
 
-  takeUserToPlay(puzzle: string) {
-    const params = {puzzleToPlay: puzzle};
+  takeUserToPlay(puzzle: DisplayPuzzle) {
+    const params = {puzzleToPlay: puzzle.Title, puzzleComponents: puzzle.Components.map(c => c.RawText)};
     this.router.navigate(['/play'], {queryParams: params});
   }
 

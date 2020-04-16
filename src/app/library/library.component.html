@@ -3,7 +3,7 @@
   <button class="add-button" (click)="takeUserToCreate()">Add New Puzzle</button>
   <div *ngFor="let puzzle of AllPuzzleCards">
     <div class="puzzle-card" >
-      <span class="card-title">{{puzzle}}</span>
+      <span class="card-title">{{puzzle.Title}}</span>
       <button class="play-button" (click)="takeUserToPlay(puzzle)">PLAY</button>
     </div>
   </div>

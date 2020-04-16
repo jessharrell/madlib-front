@@ -2,5 +2,11 @@
   <h1 class="title">Create a Puzzle</h1>
   <span class="error" [hidden]="isValid">Please enter a title</span>
   <input class="input title" [(ngModel)]="puzzleTitle"/>
-  <button class="submit-button" (click)="createPuzzle()"></button>
+  <div>
+    <div *ngFor="let component of puzzleComponents">
+      <input class="text-input" [(ngModel)]="component.RawText">
+    </div>
+    <button class="add-text-button" (click)="AddTextInput()">Add Text</button>
+  </div>
+  <button class="submit-button" (click)="createPuzzle()">Done</button>
 </div>

@@ -5,7 +5,7 @@ import {PuzzleCard} from './puzzle-card.po';
 import {CreatablePuzzlePage} from './creatable-puzzle.po';
 
 
-describe('workspace-project App', () => {
+describe('Library', () => {
   let page: LibraryPage;
 
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe('workspace-project App', () => {
     const puzzleCard = new PuzzleCard(page.GetPuzzleAtIndex(0));
     const puzzleTitle = puzzleCard.GetTitle();
 
-    puzzleCard.Play()
+    puzzleCard.Play();
 
     const navigatedTo = new PlayablePuzzlePage();
     expect(navigatedTo.getTitleText()).toEqual(puzzleTitle);
@@ -37,7 +37,6 @@ describe('workspace-project App', () => {
     const navigatedTo = new CreatablePuzzlePage();
     expect(navigatedTo.getTitleText()).toEqual('Create a Puzzle');
   });
-
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser

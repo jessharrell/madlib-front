@@ -13,7 +13,7 @@ export class LibraryPage {
     return element.all(by.css('.puzzle-card')).get(index);
   }
 
-  FindPuzzleCardWithTitle(puzzleTitle: any) {
+  FindPuzzleCardWithTitle(puzzleTitle: any): ElementFinder {
     return element(by.cssContainingText('.puzzle-card', puzzleTitle));
   }
 

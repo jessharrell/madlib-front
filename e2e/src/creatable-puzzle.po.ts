@@ -1,4 +1,4 @@
-import {by, element} from 'protractor';
+import {by, element, ElementFinder} from 'protractor';
 
 export class CreatablePuzzlePage {
   constructor(){
@@ -18,5 +18,13 @@ export class CreatablePuzzlePage {
 
   IsErrorPresent(): Promise<boolean> {
     return element(by.css('.error')).isPresent() as Promise<boolean>;
+  }
+
+  AddTextInput() {
+    element(by.css('.add-text-button')).click();
+  }
+
+  GetTextInputAtIndex(index: number): ElementFinder {
+    return element.all(by.css('.text-input')).get(index);
   }
 }

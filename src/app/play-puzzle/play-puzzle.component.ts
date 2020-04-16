@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {TextComponent} from '../create-puzzle/create-puzzle.component';
 
 @Component({
   selector: 'app-play-puzzle',
@@ -8,6 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class PlayPuzzleComponent implements OnInit {
   public puzzleTitle: string;
+  public components: string[];
 
   constructor(private route: ActivatedRoute) { }
 
@@ -16,6 +18,7 @@ export class PlayPuzzleComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         this.puzzleTitle = params.puzzleToPlay;
+        this.components = params.puzzleComponents;
       });
   }
 
